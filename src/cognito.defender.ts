@@ -1,6 +1,7 @@
 import * as cognito from 'amazon-cognito-identity-js';
 import Axios from  'axios-observable';
 import * as jwkToPem from 'jwk-to-pem';
+import * as jwt from 'jsonwebtoken';
 
 import Global = NodeJS.Global;
 export interface GlobalWithCognitoFix extends Global {
@@ -22,6 +23,7 @@ import {
   UserResendCodePayload,
   ForgotPasswordPayload,
   ConfirmPasswordPayload,
+  PayloadJWTDecoded,
 } from './payloads';
 
 export interface CognitoDefenderCredentials {
@@ -67,6 +69,41 @@ export class CognitoDefender {
       bufferPems[keyId] = pem;
     }
     this.pems = bufferPems;
+  }
+
+  public async verifyAccessToken(accessToken: string): Promise<string | PayloadJWTDecoded | undefined> {
+    // validate the token
+    const decodedJwt: any = jwt.decode(accessToken, { complete: true });
+
+    const invalidMessage = 'invalid token';
+    if (!decodedJwt) {
+      return Promise.reject(invalidMessage);
+    }
+
+    const pem = this.pems[decodedJwt.header.kid];
+
+    if (!pem) {
+      return Promise.reject(invalidMessage);
+    }
+
+    let payload: PayloadJWTDecoded;
+    try {
+      payload = jwt.verify(accessToken, pem);
+    } catch (error) {
+      return Promise.reject('token expire');
+    }
+
+    payload = {
+      uuid: payload['custom:uuid'],
+      email: payload.email,
+      emailVerified: payload['email_verified'],
+      cognitoId: payload['cognito:username'],
+      role: payload['custom:role'],
+      username: payload['nickname'],
+      eventId: payload['event_id'],
+    };
+
+    return payload;
   }
 
   public async signUp(

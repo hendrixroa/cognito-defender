@@ -141,3 +141,28 @@ export interface VerifyCodeResponse {
 export class RefreshTokenResult {
   token: string;
 }
+
+export class PayloadJWTDecoded {
+  @IsString()
+  public uuid: string;
+
+  @IsString()
+  public email: string;
+
+  @IsString()
+  @IsUsername()
+  public username: string;
+
+  @IsBoolean()
+  public emailVerified: string;
+
+  @IsString()
+  public cognitoId: string;
+
+  @IsString()
+  public role: string;
+
+  @IsString()
+  public eventId: string;
+}
+
