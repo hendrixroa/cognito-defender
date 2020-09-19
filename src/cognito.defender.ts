@@ -110,6 +110,7 @@ export class CognitoDefender {
     payload: UserSignUpPayload,
     uuid = '',
   ): Promise<SignUpResponse> {
+
     const attributeList = [
       new cognito.CognitoUserAttribute({
         Name: 'nickname',

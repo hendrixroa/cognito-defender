@@ -2,9 +2,10 @@
   "name": "cognito-defender",
   "version": "0.0.1",
   "description": "Cloud based painless wrapper library to handle authentication via AWS Cognito using JWT capabilities",
-  "main": "index.js",
+  "main": "./build/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "yarn tsc && chmod +x build/index.js"
   },
   "repository": {
     "type": "git",
@@ -22,6 +23,7 @@
   },
   "homepage": "https://github.com/hendrixroa/cognito-defender#readme",
   "devDependencies": {
+    "@types/axios": "^0.14.0",
     "@types/node": "^14.11.1",
     "typescript": "^4.0.3"
   },
