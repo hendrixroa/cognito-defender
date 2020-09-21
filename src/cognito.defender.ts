@@ -71,6 +71,10 @@ export class CognitoDefender {
     this.pems = bufferPems;
   }
 
+  public getPems(): string {
+    return this.pems;
+  }
+
   public async verifyAccessToken(accessToken: string): Promise<string | PayloadJWTDecoded | undefined> {
     // validate the token
     const decodedJwt: any = jwt.decode(accessToken, { complete: true });
