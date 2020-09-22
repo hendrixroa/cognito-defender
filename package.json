@@ -1,8 +1,9 @@
 {
   "name": "cognito-defender",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Cloud based painless wrapper library to handle authentication via AWS Cognito using JWT capabilities",
-  "main": "./build/index.js",
+  "main": "build/index.js",
+  "types": "build/payloads.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "yarn tsc && chmod +x build/index.js"

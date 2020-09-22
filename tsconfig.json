@@ -1,12 +1,16 @@
 {
   "compilerOptions": {
+    "declaration": true,
     "experimentalDecorators": true,
+    "target": "es6",
+    "module": "commonjs",
     "outDir": "build",
-    "lib": ["es2016", "DOM"],
+    "lib": ["dom", "es2015", "es2016"],
     "sourceMap": true,
     "typeRoots": [
       "./node_modules/@types"
-    ]
+    ],
+    "removeComments": true
   },
   "include": [
     "src/**/*.ts"
