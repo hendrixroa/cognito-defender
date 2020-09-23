@@ -1,12 +1,12 @@
 {
   "name": "cognito-defender",
-  "version": "0.0.2",
+  "version": "0.0.10",
   "description": "Cloud based painless wrapper library to handle authentication via AWS Cognito using JWT capabilities",
-  "main": "build/index.js",
-  "types": "build/payloads.d.ts",
+  "main": "index.js",
+  "types": "payloads.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "yarn tsc && chmod +x build/index.js"
+    "build": "yarn tsc"
   },
   "repository": {
     "type": "git",
@@ -31,7 +31,7 @@
   "dependencies": {
     "@nestjs/common": "^7.4.4",
     "@nestjs/core": "^7.4.4",
-    "@nestjs/swagger": "^4.6.0",
+    "@nestjs/swagger": "^4.0.9",
     "amazon-cognito-identity-js": "^4.4.0",
     "axios": "^0.20.0",
     "axios-observable": "^1.1.3",

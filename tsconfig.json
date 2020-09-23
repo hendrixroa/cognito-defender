@@ -4,7 +4,7 @@
     "experimentalDecorators": true,
     "target": "es6",
     "module": "commonjs",
-    "outDir": "build",
+    "outDir": "./",
     "lib": ["dom", "es2015", "es2016"],
     "sourceMap": true,
     "typeRoots": [
@@ -14,5 +14,6 @@
   },
   "include": [
     "src/**/*.ts"
-  ]
+  ],
+  "exclude": []
 }

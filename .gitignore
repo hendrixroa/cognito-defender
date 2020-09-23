@@ -107,5 +107,6 @@ dist
 
 *.js
 *.js.map
+*.d.ts
 
 build/

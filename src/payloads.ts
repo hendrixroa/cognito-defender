@@ -16,13 +16,13 @@ export class UserSignInPayload {
   @IsEmail()
   @IsNotEmpty()
   @ApiProperty()
-  email: string;
+  public email: string;
 
   @IsString()
   @IsNotEmpty()
   @MinLength(8)
   @ApiProperty()
-  password: string;
+  public password: string;
 }
 
 export enum UserRole {
@@ -31,7 +31,18 @@ export enum UserRole {
   finance = 'Finance',
 }
 
-export class UserSignUpPayload extends UserSignInPayload {
+export class UserSignUpPayload {
+  @IsEmail()
+  @IsNotEmpty()
+  @ApiProperty()
+  public email: string;
+
+  @IsString()
+  @IsNotEmpty()
+  @MinLength(8)
+  @ApiProperty()
+  public password: string;
+
   @IsString()
   @IsNotEmpty()
   @ApiProperty()
@@ -106,7 +117,13 @@ export class ForgotPasswordPayload {
   email: string;
 }
 
-export class ConfirmPasswordPayload extends ForgotPasswordPayload {
+export class ConfirmPasswordPayload {
+  @IsString()
+  @IsNotEmpty()
+  @IsEmail()
+  @ApiProperty()
+  email: string;
+
   @IsString()
   @IsNotEmpty()
   @ApiProperty()
