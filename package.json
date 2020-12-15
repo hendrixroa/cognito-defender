@@ -1,6 +1,6 @@
 {
   "name": "cognito-defender",
-  "version": "0.0.12",
+  "version": "0.0.13",
   "description": "Cloud based painless wrapper library to handle authentication via AWS Cognito using JWT capabilities",
   "main": "index.js",
   "types": "payloads.d.ts",
