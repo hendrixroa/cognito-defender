@@ -23,7 +23,7 @@ import {
   UserResendCodePayload,
   ForgotPasswordPayload,
   ConfirmPasswordPayload,
-  PayloadJWTDecoded,
+  PayloadJWTDecoded, UserUpdatePayload,
 } from './payloads';
 
 export interface CognitoDefenderCredentials {
@@ -289,6 +289,34 @@ export class CognitoDefender {
           },
         },
       );
+    });
+  }
+
+  public async updateUserAttributes(email: string, payload: UserUpdatePayload) {
+    const userData = {
+      Username: email,
+      Pool: this.userPool,
+    };
+    const cognitoUser = new cognito.CognitoUser(userData);
+
+    const attributeList = [
+      new cognito.CognitoUserAttribute({
+        Name: 'nickname',
+        Value: payload.username,
+      }),
+      new cognito.CognitoUserAttribute({
+        Name: 'custom:role',
+        Value: payload.role,
+      }),
+    ];
+
+    return new Promise((resolve, reject) => {
+      cognitoUser.updateAttributes(attributeList,(err, result) => {
+        if (err) {
+          return reject(err.message);
+        }
+        return resolve(result);
+      });
     });
   }
 }

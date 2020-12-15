@@ -77,6 +77,8 @@ export class UserSignUpPayload {
   avatar: string;
 }
 
+export class UserUpdatePayload extends UserSignUpPayload { };
+
 export class UserVerifyCodePayload {
   @IsEmail()
   @IsNotEmpty()
